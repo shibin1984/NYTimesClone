@@ -2,89 +2,64 @@
 //  HomeViewController.swift
 //  NYTimesClone
 //
-//  Created by Shibin Moideen on 5/31/17.
+//  Created by Shibin Moideen on 6/5/17.
 //  Copyright © 2017 Shibin Moideen. All rights reserved.
 //
 
 import UIKit
 
-private let reuseIdentifier = "NewsCollectionCell"
+class HomeViewController: BaseViewController {
 
-class HomeViewController: UICollectionViewController {
-
+    let homeController = HomeController.init()
+    var newsFeedsData : Array<Any>?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Register custom cell classes
-        self.collectionView?.register(UINib.init(nibName: "NewsFeedCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
-
         // Do any additional setup after loading the view.
+        // Fetch the news feeds
+        self.showProgress()
+        
+        // Call the API to fetch the news feeds.
+        homeController.getNewsFeeds(page: INITIAL_PAGE_VALUE) { (status, data) in
+            if status == true {
+                
+                // Get the Home Storyboard instance
+                let homeSB = UIStoryboard.init(name: SB_HOME, bundle: nil)
+                
+                // Create the destination viewcontroller
+                let newsFeedsVC : NewsFeedsViewController = homeSB.instantiateViewController(withIdentifier: VC_NEWSFEEDS_VIEW_CONTROLLER) as! NewsFeedsViewController
+                
+                // Assign the data array to the view controller
+                newsFeedsVC.newsFeeds = data
+                
+                // Navigate to the destination view controller
+                DispatchQueue.main.async {
+                    self.navigationController?.pushViewController(newsFeedsVC, animated: true)
+                }
+            }
+            else {
+                // Show message in case of error.
+                self.showAlertMessage(message: ALERT_MESSAGE_TRY_AGAIN, title: ALERT_TITLE_MAIN)
+            }
+            self.hideProgress()
+        }
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    // MARK: UICollectionViewDataSource
-
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
-    }
-
-
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-        return 20
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> NewsFeedCollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! NewsFeedCollectionViewCell
     
-        // Configure the cell
-        cell.newsTitleLabel.text = "News Title \(indexPath.row)"
-        if indexPath.row % 2 == 0 {
-            cell.backgroundColor = UIColor.red
-        }
-        else {
-            cell.backgroundColor = UIColor.green
-        }
-        return cell
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
     }
-
-    // MARK: UICollectionViewDelegate
-
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-    
-    }
-    */
-
 }
