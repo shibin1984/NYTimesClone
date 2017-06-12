@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3424693E1EE5B7EC00C4EFA5 /* NewsFeedDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3424693D1EE5B7EC00C4EFA5 /* NewsFeedDetailsViewController.swift */; };
 		344365A01EDE98C20001D544 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3443659F1EDE98C20001D544 /* Assets.xcassets */; };
 		344365AE1EDE98C20001D544 /* NYTimesCloneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344365AD1EDE98C20001D544 /* NYTimesCloneTests.swift */; };
 		344365B91EDE98C20001D544 /* NYTimesCloneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344365B81EDE98C20001D544 /* NYTimesCloneUITests.swift */; };
@@ -22,6 +23,8 @@
 		344365F51EE51A0E0001D544 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344365F41EE51A0E0001D544 /* HomeController.swift */; };
 		344365F81EE51D570001D544 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344365F71EE51D570001D544 /* BaseViewController.swift */; };
 		344365FB1EE557F50001D544 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344365FA1EE557F50001D544 /* Constants.swift */; };
+		344365FF1EE56A270001D544 /* NewsFeedsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344365FE1EE56A270001D544 /* NewsFeedsController.swift */; };
+		34B512E11EE7DFF00002FA26 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B512E01EE7DFF00002FA26 /* Utilities.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3424693D1EE5B7EC00C4EFA5 /* NewsFeedDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsFeedDetailsViewController.swift; sourceTree = "<group>"; };
 		344365951EDE98C20001D544 /* NYTimesClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NYTimesClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3443659F1EDE98C20001D544 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		344365A41EDE98C20001D544 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -63,6 +67,8 @@
 		344365F41EE51A0E0001D544 /* HomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		344365F71EE51D570001D544 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		344365FA1EE557F50001D544 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		344365FE1EE56A270001D544 /* NewsFeedsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsFeedsController.swift; sourceTree = "<group>"; };
+		34B512E01EE7DFF00002FA26 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -232,7 +238,9 @@
 		344365ED1EE5191E0001D544 /* NewsFeeds */ = {
 			isa = PBXGroup;
 			children = (
+				344365FE1EE56A270001D544 /* NewsFeedsController.swift */,
 				344365F21EE519A10001D544 /* NewsFeedsViewController.swift */,
+				3424693D1EE5B7EC00C4EFA5 /* NewsFeedDetailsViewController.swift */,
 			);
 			path = NewsFeeds;
 			sourceTree = "<group>";
@@ -249,6 +257,7 @@
 			isa = PBXGroup;
 			children = (
 				344365FA1EE557F50001D544 /* Constants.swift */,
+				34B512E01EE7DFF00002FA26 /* Utilities.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -391,12 +400,15 @@
 				344365E81EDF24E20001D544 /* NewsFeed.swift in Sources */,
 				344365F31EE519A10001D544 /* NewsFeedsViewController.swift in Sources */,
 				344365F51EE51A0E0001D544 /* HomeController.swift in Sources */,
+				3424693E1EE5B7EC00C4EFA5 /* NewsFeedDetailsViewController.swift in Sources */,
 				344365EA1EDF298E0001D544 /* APIRouter.swift in Sources */,
 				344365CB1EDE9E0F0001D544 /* AppDelegate.swift in Sources */,
+				34B512E11EE7DFF00002FA26 /* Utilities.swift in Sources */,
 				344365F81EE51D570001D544 /* BaseViewController.swift in Sources */,
 				344365E21EDF1B060001D544 /* NewsFeedCollectionViewCell.swift in Sources */,
 				344365F11EE519840001D544 /* HomeViewController.swift in Sources */,
 				344365FB1EE557F50001D544 /* Constants.swift in Sources */,
+				344365FF1EE56A270001D544 /* NewsFeedsController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -622,6 +634,7 @@
 				344365BF1EDE98C20001D544 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		344365C01EDE98C20001D544 /* Build configuration list for PBXNativeTarget "NYTimesCloneTests" */ = {
 			isa = XCConfigurationList;
@@ -630,6 +643,7 @@
 				344365C21EDE98C20001D544 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		344365C31EDE98C20001D544 /* Build configuration list for PBXNativeTarget "NYTimesCloneUITests" */ = {
 			isa = XCConfigurationList;
@@ -638,6 +652,7 @@
 				344365C51EDE98C20001D544 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

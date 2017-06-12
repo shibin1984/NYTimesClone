@@ -10,9 +10,8 @@ import UIKit
 
 class APIRouter: NSObject {
     
-    func getNewsFeeds(page: Int, completion: @escaping (_ success: Bool, _ error: Error?, _ data:Array<Any>) -> ()) {
-        let url : URL = URL(string: BASE_URL)!
-        
+    func getNewsFeeds(page: Int, completion: @escaping (_ success: Bool, _ error: Error?, _ data: NSDictionary) -> ()) {
+        let url : URL = URL(string: BASE_URL+String(page))!
         let request = NSMutableURLRequest(url: url)
         request.httpMethod = "GET"
         request.setValue(NYT_APIKEY, forHTTPHeaderField: "api-key")
@@ -22,28 +21,22 @@ class APIRouter: NSObject {
         
         let task = session.dataTask(with: request as URLRequest) { data, response, error in
             
-            var newsFeedList : Array<Any> = Array.init()
+            var responseDict : NSDictionary?
             
             if let error = error{
-                completion (false, error, newsFeedList)
+                completion (false, error, responseDict!)
             }
             else {
                 if let data = data {
                     
                     let jsonResponse : String = String.init(data: data, encoding: String.Encoding(rawValue: String.Encoding.utf8.rawValue))!
-                    
-                    let responseDict : NSDictionary = self.convertToDictionary(text: jsonResponse)! as NSDictionary
-                    
-                    let feeds = responseDict.value(forKeyPath: "response.docs") as! NSArray
-                    
-                    for i in 0 ..< feeds.count {
-                        let aFeed = feeds[i] as! NSDictionary
-                        let aNewsFeed = NewsFeed.init(dataDict: aFeed)
-                        print(aNewsFeed)
-                        newsFeedList.insert(aNewsFeed, at: i)
+                    if !jsonResponse.isEmpty  {
+                        responseDict = self.convertToDictionary(text: jsonResponse)! as NSDictionary
+                        completion (true, nil, responseDict!)
                     }
-                    
-                    completion (true, nil, newsFeedList)
+                    else {
+                        completion (false, nil, responseDict!)
+                    }
                 }
             }
         }

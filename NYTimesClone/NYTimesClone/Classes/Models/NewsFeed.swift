@@ -19,7 +19,7 @@ class NewsFeed: NSObject {
     var multimedia : Array<Any>?
     var headline : [String:Any]?
     var keywords : Array<Any>?
-    var pub_date : Date?
+    var pub_date : String?
     var document_type : String?
     var news_desk : String?
     var section_name : String?
@@ -44,7 +44,7 @@ class NewsFeed: NSObject {
         self.multimedia = dataDict.value(forKey: "multimedia") as? Array<Any>
         self.headline = dataDict.value(forKey: "headline") as? [String : Any]
         self.keywords = dataDict.value(forKey: "keywords") as? Array<Any>
-        self.pub_date = dataDict.value(forKey: "pub_date") as? Date
+        self.pub_date = dataDict.value(forKey: "pub_date") as? String
         self.document_type = dataDict.value(forKey: "document_type") as? String
         self.news_desk = dataDict.value(forKey: "news_desk") as? String
         self.section_name = dataDict.value(forKey: "section_name") as? String

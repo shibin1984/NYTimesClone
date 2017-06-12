@@ -1,5 +1,5 @@
 //
-//  HomeController.swift
+//  NewsFeedsController.swift
 //  NYTimesClone
 //
 //  Created by Shibin Moideen on 6/5/17.
@@ -8,11 +8,12 @@
 
 import UIKit
 
-class HomeController: NSObject {
+class NewsFeedsController: NSObject {
 
     let apiRouter : APIRouter = APIRouter()
     
     func getNewsFeeds(page: Int, completion: @escaping (_ success: Bool, _ data: Array<Any>, _ headerDict : NSDictionary) -> ()) {
+        
         var newsFeedList : Array<Any> = Array.init()
         var headerDict : NSDictionary = NSDictionary()
         
@@ -29,10 +30,9 @@ class HomeController: NSObject {
                     let aNewsFeed = NewsFeed.init(dataDict: aFeed)
                     newsFeedList.insert(aNewsFeed, at: i)
                 }
-
-                completion(true, newsFeedList, headerDict)
+                
+                completion (true, newsFeedList, headerDict)
             }
         }
     }
 }
-    

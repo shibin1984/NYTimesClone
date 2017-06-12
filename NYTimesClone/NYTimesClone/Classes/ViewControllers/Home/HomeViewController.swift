@@ -21,7 +21,7 @@ class HomeViewController: BaseViewController {
         self.showProgress()
         
         // Call the API to fetch the news feeds.
-        homeController.getNewsFeeds(page: INITIAL_PAGE_VALUE) { (status, data) in
+        homeController.getNewsFeeds(page: INITIAL_PAGE_VALUE) { (status, data, headerDict) in
             if status == true {
                 
                 // Get the Home Storyboard instance
@@ -32,6 +32,7 @@ class HomeViewController: BaseViewController {
                 
                 // Assign the data array to the view controller
                 newsFeedsVC.newsFeeds = data
+                newsFeedsVC.headerDict = headerDict
                 
                 // Navigate to the destination view controller
                 DispatchQueue.main.async {
@@ -47,7 +48,7 @@ class HomeViewController: BaseViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     override func didReceiveMemoryWarning() {

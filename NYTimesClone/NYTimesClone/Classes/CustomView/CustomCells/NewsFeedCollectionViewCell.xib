@@ -1,41 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" id="gTV-IL-0wX" customClass="NewsFeedCollectionViewCell" customModule="NYTimesClone" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="180" height="50"/>
+            <rect key="frame" x="0.0" y="0.0" width="329" height="72"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="180" height="50"/>
+                <rect key="frame" x="0.0" y="0.0" width="329" height="72"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jdx-4R-ehc">
-                        <rect key="frame" x="0.0" y="15" width="180" height="21"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nyt" translatesAutoresizingMaskIntoConstraints="NO" id="bdh-zd-M2W">
+                        <rect key="frame" x="5" y="7" width="58" height="58"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="bdh-zd-M2W" secondAttribute="height" multiplier="1:1" id="OZ3-Uu-1Yy"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="newsTitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jdx-4R-ehc" userLabel="newsTitle">
+                        <rect key="frame" x="73" y="5" width="246" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="newsSnippet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nve-kl-df2" userLabel="newsSnippet">
+                        <rect key="frame" x="73" y="26.5" width="246" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="newsDate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZGE-Uo-p4X" userLabel="newsDate">
+                        <rect key="frame" x="73" y="48.5" width="246" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KHz-hS-5sj">
+                        <rect key="frame" x="0.0" y="71" width="329" height="1"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="pYx-g7-UL4"/>
+                        </constraints>
+                    </view>
                 </subviews>
             </view>
             <constraints>
-                <constraint firstItem="Jdx-4R-ehc" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="K3e-vn-5tN"/>
-                <constraint firstItem="Jdx-4R-ehc" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="YkY-nz-zBu"/>
-                <constraint firstItem="Jdx-4R-ehc" firstAttribute="width" secondItem="gTV-IL-0wX" secondAttribute="width" id="sBv-Y2-E1l"/>
+                <constraint firstAttribute="trailing" secondItem="Nve-kl-df2" secondAttribute="trailing" constant="10" id="22S-cb-j5G"/>
+                <constraint firstAttribute="bottom" secondItem="KHz-hS-5sj" secondAttribute="bottom" id="2Lu-uS-5cU"/>
+                <constraint firstItem="Nve-kl-df2" firstAttribute="leading" secondItem="bdh-zd-M2W" secondAttribute="trailing" constant="10" id="4jW-FC-CIf"/>
+                <constraint firstItem="ZGE-Uo-p4X" firstAttribute="top" secondItem="Nve-kl-df2" secondAttribute="bottom" constant="5" id="9xA-4W-ask"/>
+                <constraint firstItem="bdh-zd-M2W" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="BTq-8B-Ik7"/>
+                <constraint firstItem="KHz-hS-5sj" firstAttribute="width" secondItem="gTV-IL-0wX" secondAttribute="width" id="M95-1O-0y2"/>
+                <constraint firstItem="bdh-zd-M2W" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="height" multiplier="0.8" id="NZi-PL-6K5"/>
+                <constraint firstAttribute="trailing" secondItem="ZGE-Uo-p4X" secondAttribute="trailing" constant="10" id="Q00-Bn-6jq"/>
+                <constraint firstItem="Jdx-4R-ehc" firstAttribute="leading" secondItem="bdh-zd-M2W" secondAttribute="trailing" constant="10" id="W6y-7w-C6L"/>
+                <constraint firstItem="Nve-kl-df2" firstAttribute="top" secondItem="Jdx-4R-ehc" secondAttribute="baseline" constant="5" id="a2V-Lj-Hak"/>
+                <constraint firstItem="ZGE-Uo-p4X" firstAttribute="leading" secondItem="bdh-zd-M2W" secondAttribute="trailing" constant="10" id="bHT-K6-SrE"/>
+                <constraint firstItem="Jdx-4R-ehc" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="cxN-cC-kVY"/>
+                <constraint firstAttribute="trailing" secondItem="Jdx-4R-ehc" secondAttribute="trailing" constant="10" id="pXa-tc-p0N"/>
+                <constraint firstItem="KHz-hS-5sj" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="vlr-aK-RAG"/>
+                <constraint firstItem="bdh-zd-M2W" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="yba-Lz-1qK"/>
             </constraints>
-            <size key="customSize" width="180" height="50"/>
+            <size key="customSize" width="329" height="71"/>
             <connections>
+                <outlet property="newsDateLabel" destination="ZGE-Uo-p4X" id="Ilb-60-Pfv"/>
+                <outlet property="newsSnippetLabel" destination="Nve-kl-df2" id="fcp-t4-NSf"/>
+                <outlet property="newsThumbnail" destination="bdh-zd-M2W" id="TcU-6c-HWC"/>
                 <outlet property="newsTitleLabel" destination="Jdx-4R-ehc" id="tm6-fV-AV0"/>
             </connections>
-            <point key="canvasLocation" x="-434" y="-5"/>
+            <point key="canvasLocation" x="-359.5" y="5"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="nyt" width="100" height="100"/>
+    </resources>
 </document>

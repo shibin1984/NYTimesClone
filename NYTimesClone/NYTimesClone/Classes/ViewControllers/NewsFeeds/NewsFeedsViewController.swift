@@ -12,7 +12,10 @@ private let reuseIdentifier = "Cell"
 
 class NewsFeedsViewController: UICollectionViewController {
 
+    let newsFeedController = NewsFeedsController.init()
     var newsFeeds : Array<Any>?
+    var headerDict : NSDictionary?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,27 +26,20 @@ class NewsFeedsViewController: UICollectionViewController {
         // Register custom cell classes
         self.collectionView?.register(UINib.init(nibName: "NewsFeedCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
 
-        // Do any additional setup after loading the view.
+        // Set the Navigation bar title
+        self.navigationItem.title = NAV_TITLE_NEWS_FEEDS
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        self.navigationItem.setHidesBackButton(true, animated:true);
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
 
     // MARK: UICollectionViewDataSource
     
@@ -65,46 +61,56 @@ class NewsFeedsViewController: UICollectionViewController {
         // Configure the cell
         let aNewsFeed : NewsFeed = newsFeeds![indexPath.row] as! NewsFeed
         
-        // Set the title as the Feeds head line
-        cell.newsTitleLabel.text = aNewsFeed.headline?["main"] as? String
+        cell.updateCellData(newsFeed: aNewsFeed)
         
         return cell
     }
 
     // MARK: UICollectionViewDelegate
-
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
         // Navigate the user to the News Details screen.
+        // Get the Home Storyboard instance
+        let homeSB = UIStoryboard.init(name: SB_HOME, bundle: nil)
+        
+        // Create the destination viewcontroller
+        let newsFeedsVC : NewsFeedDetailsViewController = homeSB.instantiateViewController(withIdentifier: VC_NEWSFEED_DETAILS_VIEW_CONTROLLER) as! NewsFeedDetailsViewController
+        
+        // Assign the data array to the view controller
+        newsFeedsVC.aNewsFeed = newsFeeds![indexPath.row] as? NewsFeed
+        
+        // Navigate to the destination view controller
+        DispatchQueue.main.async {
+            self.navigationController?.pushViewController(newsFeedsVC, animated: true)
+        }
     }
     
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
+    override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if indexPath.row == (newsFeeds?.count)! - 1 {
+            // Call the API to fetch the news feeds.
+            let newPageCount = self.headerDict?.value(forKey: "offset") as! Int
+            newsFeedController.getNewsFeeds(page: newPageCount / 10 + 1) { (status, data, headerDict) in
+                self.headerDict = headerDict                
+                if status == true {
+                    for i in 0 ..< data.count {
+                        let aFeed : NewsFeed = data[i] as! NewsFeed
+                        self.newsFeeds?.append(aFeed)
+                    }
+                    self.collectionView?.reloadData()
+                }
+            }
+        }
     }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
+    
     override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
+        if indexPath.row == newsFeeds?.count {
+            return true
+        }
+        else {
+            return false
+        }
     }
 
     override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
     
     }
-    */
-
 }
