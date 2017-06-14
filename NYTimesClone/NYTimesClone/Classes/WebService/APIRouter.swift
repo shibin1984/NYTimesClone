@@ -15,7 +15,6 @@ class APIRouter: NSObject {
         let request = NSMutableURLRequest(url: url)
         request.httpMethod = "GET"
         request.setValue(NYT_APIKEY, forHTTPHeaderField: "api-key")
-        request.setValue(String(page), forHTTPHeaderField: "page")
         
         let session = URLSession.shared
         
